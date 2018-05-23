@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+</head>
+<body>
+  <h5>账户余额：<span id="amount">&&&amount&&&</span></h5>
+  <button id="button">打钱</button>
+  <script>
+    button.addEventListener('click',(e)=>{
+      let script = document.createElement('script')
+      let functionName = 'Frank' + parseInt(Math.random()*1000000,10)
+      // 生成frank+十进制的整数随机数,防止污染全局变量
+      window[functionName] = function() {
+        amount.innerText = amount.innerText - 0 - 1
+        // -0是将字符串转为数字，然后每次减1          
+      }
+      script.src = 'http://jack.com:8002/pay?callback=' + functionName
+      document.body.appendChild(script)
+      script.onload = function(e) {
+        e.currentTarget.remove()
+        delete window[functionName]
+      }
+      script.onerror = function(e) {
+        alert('fail')
+        e.currentTarget.remove()
+        delete window[functionName]
+      }
+    })
+  </script>
+</body>
+</html>
