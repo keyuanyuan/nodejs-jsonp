@@ -16,7 +16,7 @@
         amount.innerText = amount.innerText - 0 - 1
         // -0是将字符串转为数字，然后每次减1          
       }
-      script.src = 'http://jack.com:8002/pay?callback=' + functionName
+      script.src = '/pay?callback=' + functionName
       document.body.appendChild(script)
       script.onload = function(e) {
         e.currentTarget.remove()
