@@ -17,6 +17,7 @@
         // -0是将字符串转为数字，然后每次减1          
       }
       script.src = '/pay?callback=' + functionName
+      // 在frank.com上请求jack.com:8082就改为'http://jack.com:8082/pay?callback='+functionName
       document.body.appendChild(script)
       script.onload = function(e) {
         e.currentTarget.remove()
